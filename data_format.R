@@ -10,7 +10,8 @@ library(ggbeeswarm)
 library(GLMMadaptive)
 library(ggalt)
 library(segmented)
-#import data
+
+#Scallop Population Data Import
 raw <- read.csv("/Users/brittneyscannell/Desktop/ScallopDensities.csv")
 
 
@@ -25,3 +26,15 @@ Scallop <- raw %>%
            case_when(
              year <= 18 ~ "Before",
              year > 18 ~ "After"))
+
+# Scallop Change Data Import
+rawDelta <- read.csv("D:/Projects/ScallopDieOff/ScallopChange.csv")
+
+Delta <- rawDelta %>%
+  dplyr::select(Embayment, deltadensity, year) %>%
+  mutate(year = year - 2000, period = 
+           case_when(
+             year <= 18 ~ "Before",
+             year > 18 ~ "After")) %>%
+  group_by(Embayment, period) %>%
+  summarise(AvgDeltaDensity = mean(deltadensity))
