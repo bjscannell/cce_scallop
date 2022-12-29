@@ -7,6 +7,7 @@ library(lme4)
 library(DHARMa)
 library(lmtest)
 library(GLMMadaptive)
+library(segmented)
 #import data
 raw <- read.csv("ScallopDensities.csv")
 
