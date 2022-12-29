@@ -21,7 +21,7 @@ my.fitted <- fitted(fit_seg)
 my.model <- data.frame(year = bp$year, n = my.fitted)
 my.lines <- fit_seg$psi[, 2]
 
-params <- data.frame(confint.segmented(fit_seg), y = c(208, 292, 335))
+params <- data.frame(confint.segmented(fit_seg), y = c(230, 398, 272))
 
 
 
@@ -38,10 +38,13 @@ bp_plot <- ggplot(my.model, aes(x = year, y = n)) + geom_line() +
        y = "Baywide Fall Scallop Count") +
   theme(
     axis.title.y = element_text(vjust = +3),
-    plot.margin = margin(0.7,0.7,0.7,0.7, "cm"))
+    plot.margin = margin(0.7,0.7,0.7,0.7, "cm"),
+    panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  annotate("rect" ,xmin = 2008, xmax = 2011, ymin = 205, ymax = 225, 
+           fill = "white",alpha = 1)
 
 
 bp_plot
 
 
-ggsave("bp_plot.png", bp_plot, dpi = 360, bg = "white")
+ggsave("plots/bp_plot.png", bp_plot, dpi = 360, bg = "white")
