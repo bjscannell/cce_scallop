@@ -1,14 +1,20 @@
 #. https://rpubs.com/MarkusLoew/12164
 
+
+bp <- Scallop %>% 
+  dplyr::filter(season == "fall ") %>% 
+  mutate(year = year + 2000) %>% 
+  group_by(year) %>% 
+  slice_sample(n=48) %>% 
+  ungroup() %>% group_by(year) %>% 
+  summarise(n = sum(adults))
+
+
 mod <- glm(n ~ 1, family = "poisson", data = bp)
 
 fit_seg <- segmented(mod, seg.Z = ~year, npsi = 3)
 mod_sum <- summary(fit_seg)
 
-
-
-# get the slopes
-slope(fit_seg)
 
 # get the fitted data
 my.fitted <- fitted(fit_seg)
@@ -16,6 +22,7 @@ my.model <- data.frame(year = bp$year, n = my.fitted)
 my.lines <- fit_seg$psi[, 2]
 
 params <- data.frame(confint.segmented(fit_seg), y = c(208, 292, 335))
+
 
 
 # plot the fitted model

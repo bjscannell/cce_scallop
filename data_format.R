@@ -6,10 +6,12 @@ library(pscl)
 library(lme4)
 library(DHARMa)
 library(lmtest)
+library(ggbeeswarm)
 library(GLMMadaptive)
+library(ggalt)
 library(segmented)
 #import data
-raw <- read.csv("ScallopDensities.csv")
+raw <- read.csv("/Users/brittneyscannell/Desktop/ScallopDensities.csv")
 
 
 #clean data
