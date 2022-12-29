@@ -42,8 +42,3 @@ tukey.two.way
 
 
 
-
-
-
-
-
