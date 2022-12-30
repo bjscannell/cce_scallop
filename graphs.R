@@ -35,19 +35,22 @@ ggplot(baycount, aes(x = factor(season,levels = c("spr", "fall "), labels = c("S
   geom_boxplot() +
   geom_quasirandom( size =1.5, alpha = 0.4, width =0.2) +
   theme_minimal() +
-  facet_wrap(~ factor(period,levels = c("Before", "After"), labels = c("2008-2018", "2019-2020")),
+  facet_wrap(~ factor(period,levels = c("Before", "After"), labels = c("2008-2018", "2019-2021")),
              nrow = 1, strip.position = "bottom") +
   labs( y = expression(paste("Adult Scallop Counts per 50 m"^"2"))) +
   theme(panel.spacing = unit(0, "cm"),
         strip.placement = "outside",
         legend.position = "none",
+        text = element_text(size = 15),
         axis.title.y =element_text(vjust = +3),
         axis.title.x = element_blank(),
         plot.margin = margin(0.7,0.7,0.7,0.7, "cm")) +
   scale_fill_manual(values = c( "#f2bf3b","#588b8b")) 
 
-ggsave("plots/boxplot.png", dpi = 360, bg = "white")
-  
+ggsave("plots/boxplot.png", dpi = 360, bg = "white",
+       width = 10.3,
+       height = 9,
+       units = "in")
   
 
 
