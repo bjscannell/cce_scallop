@@ -35,14 +35,14 @@ ggplot(baycount, aes(x = factor(season,levels = c("spr", "fall "), labels = c("S
   geom_boxplot() +
   geom_quasirandom( size =1.5, alpha = 0.4, width =0.2) +
   theme_minimal() +
-  facet_wrap(~ factor(period,levels = c("Before", "After"), labels = c("Before Collapse", "Post Collapse")),
+  facet_wrap(~ factor(period,levels = c("Before", "After"), labels = c("2008-2018", "2019-2020")),
              nrow = 1, strip.position = "bottom") +
-  labs(x = "Time Period", y = "Adult Scallop Counts",) +
+  labs( y = expression(paste("Adult Scallop Counts per 50 m"^"2"))) +
   theme(panel.spacing = unit(0, "cm"),
         strip.placement = "outside",
         legend.position = "none",
-        axis.title.y = element_text(vjust = +3),
-        axis.title.x = element_text(vjust = +3),
+        axis.title.y =element_text(vjust = +3),
+        axis.title.x = element_blank(),
         plot.margin = margin(0.7,0.7,0.7,0.7, "cm")) +
   scale_fill_manual(values = c( "#f2bf3b","#588b8b")) 
 
@@ -102,7 +102,7 @@ ggplot(data = db_wide) +
     plot.title.position = "plot",
     plot.subtitle=element_text(face="italic", size=12, margin=margin(b=12)),
     plot.caption=element_text(size=8, margin=margin(t=12), color="#7a7d7e")
-  ) + coord_flip()
+  ) 
 
 
 #dumbbell for change in delta density 

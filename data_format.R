@@ -10,6 +10,9 @@ library(ggbeeswarm)
 library(GLMMadaptive)
 library(ggalt)
 library(segmented)
+library(mgcv)
+library(mgcViz)
+library(goft)
 
 #Scallop Population Data Import
 raw <- read.csv("D:/Projects/ScallopDieOff/ScallopDensities.csv")
