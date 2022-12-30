@@ -12,7 +12,7 @@ library(ggalt)
 library(segmented)
 
 #Scallop Population Data Import
-raw <- read.csv("/Users/brittneyscannell/Desktop/ScallopDensities.csv")
+raw <- read.csv("D:/Projects/ScallopDieOff/ScallopDensities.csv")
 
 
 #clean data
@@ -37,4 +37,8 @@ Delta <- rawDelta %>%
              year <= 18 ~ "Before",
              year > 18 ~ "After")) %>%
   group_by(Embayment, period) %>%
-  summarise(AvgDeltaDensity = mean(deltadensity))
+  summarise(n = mean(deltadensity))
+  pivot_wider(names_from = period, values_from = n) %>% 
+  mutate(diff = Before - After) %>% 
+  filter(!is.na(diff)) %>% 
+  mutate(mid= mean(c(After, Before))) %>%  ungroup()
