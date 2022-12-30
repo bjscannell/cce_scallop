@@ -48,9 +48,9 @@ ggplot(baycount, aes(x = factor(season,levels = c("spr", "fall "), labels = c("S
   scale_fill_manual(values = c( "#f2bf3b","#588b8b")) 
 
 ggsave("plots/boxplot.png", dpi = 360, bg = "white",
-       width = 10.3,
-       height = 9,
-       units = "in")
+       width = 3708,
+       height = 3240,
+       units = "px")
   
 
 
