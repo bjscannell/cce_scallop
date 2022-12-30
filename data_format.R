@@ -41,7 +41,13 @@ Delta <- rawDelta %>%
              year > 18 ~ "After")) %>%
   group_by(Embayment, period) %>%
   summarise(n = mean(deltadensity))
-  pivot_wider(names_from = period, values_from = n) %>% 
-  mutate(diff = Before - After) %>% 
-  filter(!is.na(diff)) %>% 
-  mutate(mid= mean(c(After, Before))) %>%  ungroup()
+
+#Scallop Spat
+rawSpatBefore <- read.csv("D:/Projects/ScallopDieOff/Spat_periodone.csv")
+rawSpatAfter <- read.csv("D:/Projects/ScallopDieOff/Spat_periodtwo.csv")
+
+SpatBefore <- rawSpatBefore %>%
+  dplyr::select(year, site, spat, spattrans)
+SpatAfter <- rawSpatAfter %>%
+  dplyr::select(year, site, spat, spattrans)
+SpatMaster <- rbind(SpatBefore, SpatAfter)
